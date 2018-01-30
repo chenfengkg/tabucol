@@ -245,15 +245,15 @@ void findmove() {
 
 //更新值
 void makemove() {
-    f = delt + f;
-    if (f < best_f) best_f = f ;
+    f = delt + f;//更新冲突值
+    if (f < best_f) best_f = f ;//更新历史最好冲突
     int old_color = sol[node];
     sol[node] = color;
-    tabutenure[node][old_color] = iter + f + rand() % 10 + 1;
+    tabutenure[node][old_color] = iter + f + rand() % 10 + 1;//更新禁忌表
     int *h_graph = g[node];
     int num_edge = v_edge[node];
     int tmp;
-    for (int i = 0; i<num_edge; i++) {//12.4%
+    for (int i = 0; i<num_edge; i++) {//更新邻接颜色表
         tmp = h_graph[i];
         adj_color_table[tmp][old_color]--;
         adj_color_table[tmp][color]++;
